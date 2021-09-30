@@ -1,0 +1,40 @@
+.areachat {
+    height: 350px;
+    border: 0px;
+    border-top: 2px;
+    border-bottom: 2px;
+    border-style: solid;
+    background-color: rgb(26, 25, 25);
+}
+
+.caixa {
+    border: 2px;
+    border-style: solid;
+}
+
+input[type=text] {
+    box-sizing: border-box;
+    border: none;
+    font-size: x-large;
+    border-radius: 0%;
+
+}
+
+button[type=button] {
+    border-radius: 0%;
+}
+
+.mensagem{ 
+    border: 2px;
+    padding: 5px;
+    margin: 5px;
+    margin-top: 12px;
+    border-style: solid;
+    border-radius: 5px;
+    background-color: beige;
+    color: black;
+    border-color: beige;
+    height: fit-content;
+    width: fit-content;
+
+}

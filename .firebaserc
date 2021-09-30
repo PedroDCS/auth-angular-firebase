@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "projetos-p": {
+      "hosting": {
+        "auth-angular-firebase": [
+          "projetos-p"
+        ]
+      }
+    }
+  }
+}
