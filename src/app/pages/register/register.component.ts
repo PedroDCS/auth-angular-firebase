@@ -29,14 +29,13 @@ export class RegisterComponent implements OnInit {
   register(formData: any) {
     this.clearErrorMessage();
     if (this.validateForm(formData.value)) {
-      this.authservice.registerWithEmail(formData.value)
-        .then(() => {
-          this.criarusuario(formData.value.email);
-          this.router.navigate(['/'])
-        }).catch(_error => {
-          this.error = _error
-          this.router.navigate(['/register'])
-        })
+      this.authservice.registerWithEmail(formData.value).then(() => {
+        this.criarusuario(formData.value.email);
+        this.router.navigate(['/'])
+      }).catch(_error => {
+        this.error = _error
+        this.router.navigate(['/register'])
+      })
     }
   }
 
@@ -50,6 +49,7 @@ export class RegisterComponent implements OnInit {
       this.fb.firestoresetdata("Usuarios", String(email), aux);
     } catch (error) {
       alert(error)
+      console.log(error);
     }
   }
 

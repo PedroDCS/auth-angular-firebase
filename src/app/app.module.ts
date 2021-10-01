@@ -13,6 +13,7 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { environment } from 'src/environments/environment';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     HomeComponent,
     ChatComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -17,14 +17,13 @@ input[type=text] {
     border: none;
     font-size: x-large;
     border-radius: 0%;
-
 }
 
 button[type=button] {
     border-radius: 0%;
 }
 
-.mensagem{ 
+.mensagem {
     border: 2px;
     padding: 5px;
     margin: 5px;
@@ -34,7 +33,18 @@ button[type=button] {
     background-color: beige;
     color: black;
     border-color: beige;
-    height: fit-content;
-    width: fit-content;
+    height: auto;
+    width: auto;
 
+}
+
+.mensagem-host {
+    background-color: dodgerblue;
+    color: white;
+    border-color: dodgerblue;
+    
+}
+
+div {
+    scroll-behavior: smooth;
 }

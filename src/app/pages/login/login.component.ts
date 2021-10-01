@@ -54,9 +54,8 @@ export class LoginComponent implements OnInit {
 
     this.authservice.resetarsenha((<HTMLSelectElement>document.getElementById('exampleInputEmail1')).value)
       .then(() => {
-        //document.getElementById('modal1').click()
-        //document.getElementById('modalsucesso').click()
-
+        alert("Email de recuperação enviado, cheque sua caixa de entrada");
+        (<HTMLSelectElement>document.getElementById("fecharmodal")).click()
       }).catch(_error => {
         this.error = _error
         alert("Email Incorreto, Não Existe Cadastro com esse email");

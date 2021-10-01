@@ -28,28 +28,4 @@ export class FirebaseService {
     return this.firestore.collection(colection).snapshotChanges()
   }
 
-
-
-  /*
-  createCoffeeOrder(data) {
-    return new Promise<any>((resolve, reject) =>{
-        this.firestore
-            .collection("coffeeOrders")
-            .add(data)
-            .then(res => {}, err => reject(err));
-    });
-}
-
-  getCoffeeOrders() { 
-    return 
-     this.firestore.collection("coffeeOrders").snapshotChanges();
-  }
-
-  */
-
-
-
-
-
-
 }

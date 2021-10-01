@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
 import { FirebaseService } from 'src/app/shared/firebase.service';
@@ -8,7 +8,7 @@ import { FirebaseService } from 'src/app/shared/firebase.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
 
   usuario: any = null;
   mensagens: any = null;
@@ -20,44 +20,58 @@ export class ChatComponent implements OnInit {
     this.auth = this.authservice.authState;
 
     if (this.talogado()) {
-      this.getuserdados();
-      this.pegarmensagens();
+      try {
+        this.getuserdados();
+        this.pegarmensagens();
+        setTimeout(() => {
+          var objDiv = (<HTMLSelectElement>document.getElementById("chat"));
+          objDiv.scrollTop = objDiv.scrollHeight;
+        }, 500);
+      } catch (error) {
+        alert(error)
+        console.log(error);
+      }
     }
-
   }
 
+  ngOnDestroy(): void {
+    try {
+      this.pegarmensagens().unsubscribe()
+    } catch (error) {
+      alert(error)
+      console.log(error);
+    }
+  }
 
   pegarmensagens() {
-    this.fb.firestoregetcolec("Chat").subscribe(doc => {
-      this.mensagens = doc
+    return this.fb.firestoregetcolec("Chat").subscribe(doc => {
+      this.mensagens = doc;
+      var objDiv = (<HTMLSelectElement>document.getElementById("chat"));
+      objDiv.scrollTop = objDiv.scrollHeight;
     })
   }
 
   enviarmensagem() {
-
     let mensagem = {
       user: this.usuario.nomeusuario,
       mensagem: (<HTMLSelectElement>document.getElementById("mensagem")).value
     }
-    //let data = new Date().getTime()
-
-    this.fb.firestoresetdata("Chat", String(new Date().getTime()), mensagem).then(() => {
-      (<HTMLSelectElement>document.getElementById("mensagem")).value = ''
-
-    })
-  }
-
-  teste() {
-    console.log(this.usuario);
-    console.log(this.mensagens);
+    try {
+      this.fb.firestoresetdata("Chat", String(new Date().getTime()), mensagem).then(() => {
+        (<HTMLSelectElement>document.getElementById("mensagem")).value = ''
+      })
+    } catch (error) {
+      alert(error)
+      console.log(error);
+    }
 
   }
 
   getuserdados() {
     if (this.auth.email == undefined) {
-      this.fb.firestoregetdata("Usuarios", String(this.auth.user.email)).subscribe(doc => (this.usuario = doc.payload.data()));
+      return this.fb.firestoregetdata("Usuarios", String(this.auth.user.email)).subscribe(doc => (this.usuario = doc.payload.data()));
     } else {
-      this.fb.firestoregetdata("Usuarios", this.auth.email).subscribe(doc => (this.usuario = doc.payload.data()));
+      return this.fb.firestoregetdata("Usuarios", this.auth.email).subscribe(doc => (this.usuario = doc.payload.data()));
     }
   }
 

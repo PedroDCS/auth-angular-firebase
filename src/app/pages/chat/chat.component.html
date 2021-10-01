@@ -5,13 +5,26 @@
 
                 <h3 class="text-center">Chat em tempo Real</h3>
 
-                <div class="overflow-auto areachat">
+                <div id="chat" class="overflow-auto areachat">
                     <div *ngIf="mensagens != null" class="container ">
-                        <div *ngFor="let mensagem of mensagens; index as i">
-                            <div class="mensagem">
-                                <p><b>{{mensagem.payload.doc.data().user}}</b></p>
-                                <p>{{mensagem.payload.doc.data().mensagem}}</p>
+
+                        <div class="" *ngFor="let mensagem of mensagens; index as i">
+
+                            <div class="align-self-end align-content-end align-items-end"
+                                *ngIf="mensagem.payload.doc.data().user == usuario.nomeusuario;else minhamensagem">
+                                <div class="mensagem mensagem-host ">
+                                    <p class="text-end"><b>{{mensagem.payload.doc.data().user}}</b></p>
+                                    <p class="text-end">{{mensagem.payload.doc.data().mensagem}}</p>
+                                </div>
                             </div>
+
+                            <ng-template #minhamensagem>
+                                <div class="mensagem">
+                                    <p><b>{{mensagem.payload.doc.data().user}}</b></p>
+                                    <p>{{mensagem.payload.doc.data().mensagem}}</p>
+                                </div>
+                            </ng-template>
+
                         </div>
 
                     </div>
@@ -19,8 +32,8 @@
                 </div>
 
                 <div class="input-group input-group-lg">
-                    <input type="text" class="form-control bg-dark text-white" aria-label="Escreva a mensagem"
-                        aria-describedby="Escreva a mensagem" id="mensagem">
+                    <input (keyup.enter)="enviarmensagem()" type="text" class="form-control bg-dark text-white"
+                        aria-label="Escreva a mensagem" aria-describedby="Escreva a mensagem" id="mensagem">
                     <button (click)="enviarmensagem()" class="btn btn-primary" type="button"
                         id="button-addon2">Enviar</button>
 
@@ -29,6 +42,5 @@
             </div>
 
         </div>
-        <button (click)="teste()" class="btn btn-roxo">Teste</button>
     </div>
 </div>
