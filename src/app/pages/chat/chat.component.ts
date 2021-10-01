@@ -17,12 +17,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   constructor(private fb: FirebaseService, private authservice: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.auth = this.authservice.authState;
+    this.auth = this.authservice.estado_Auth;
 
     if (this.talogado()) {
       try {
-        this.getuserdados();
-        this.pegarmensagens();
+        this.getDadosUsuarios();
+        this.getMensagens();
         setTimeout(() => {
           var objDiv = (<HTMLSelectElement>document.getElementById("chat"));
           objDiv.scrollTop = objDiv.scrollHeight;
@@ -36,14 +36,14 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     try {
-      this.pegarmensagens().unsubscribe()
+      this.getMensagens().unsubscribe()
     } catch (error) {
       alert(error)
       console.log(error);
     }
   }
 
-  pegarmensagens() {
+  getMensagens() {
     return this.fb.firestoregetcolec("Chat").subscribe(doc => {
       this.mensagens = doc;
       var objDiv = (<HTMLSelectElement>document.getElementById("chat"));
@@ -59,6 +59,8 @@ export class ChatComponent implements OnInit, OnDestroy {
     try {
       this.fb.firestoresetdata("Chat", String(new Date().getTime()), mensagem).then(() => {
         (<HTMLSelectElement>document.getElementById("mensagem")).value = ''
+      }).catch(error => {
+        alert(error)
       })
     } catch (error) {
       alert(error)
@@ -67,16 +69,16 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   }
 
-  getuserdados() {
+  getDadosUsuarios() {
     if (this.auth.email == undefined) {
-      return this.fb.firestoregetdata("Usuarios", String(this.auth.user.email)).subscribe(doc => (this.usuario = doc.payload.data()));
+      return this.fb.firestoregetdata("UsuariosChat", String(this.auth.user.email)).subscribe(doc => (this.usuario = doc.payload.data()));
     } else {
-      return this.fb.firestoregetdata("Usuarios", this.auth.email).subscribe(doc => (this.usuario = doc.payload.data()));
+      return this.fb.firestoregetdata("UsuariosChat", this.auth.email).subscribe(doc => (this.usuario = doc.payload.data()));
     }
   }
 
   talogado() {
-    if (!this.authservice.isUserEmailLoggedIn) {
+    if (!this.authservice.usuario_logado_email) {
       this.router.navigate(['/login'])
       return false
     } else {

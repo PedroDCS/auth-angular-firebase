@@ -35,14 +35,12 @@ button[type=button] {
     border-color: beige;
     height: auto;
     width: auto;
-
 }
 
 .mensagem-host {
     background-color: dodgerblue;
     color: white;
     border-color: dodgerblue;
-    
 }
 
 div {

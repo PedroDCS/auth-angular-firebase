@@ -11,8 +11,8 @@ export class LoginComponent implements OnInit {
 
   email = "";
   password = "";
-  errorMessage = ''; // validation error handle
-  error: { name: string, message: string } = { name: '', message: '' }; // for firbase error handle
+  errorMessage = ''; // error 
+  error: { name: string, message: string } = { name: '', message: '' }; // firebase
 
 
   constructor(private authservice: AuthService, private router: Router) { }
@@ -21,13 +21,8 @@ export class LoginComponent implements OnInit {
     this.talogado()
   }
 
-  clearErrorMessage() {
-    this.errorMessage = '';
-    this.error = { name: '', message: '' };
-  }
-
   talogado() {
-    if (this.authservice.isUserEmailLoggedIn) {
+    if (this.authservice.usuario_logado_email) {
       this.router.navigate(['/'])
       return true
     } else {
@@ -37,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   login(formData: any) {
     if (formData.valid) {
-      this.authservice.loginWithEmail(formData.value)
+      this.authservice.login_com_email(formData.value)
         .then(() => {
           this.router.navigate(['/'])
         }).catch(_error => {
@@ -50,9 +45,8 @@ export class LoginComponent implements OnInit {
 
 
 
-  resetpassword() {
-
-    this.authservice.resetarsenha((<HTMLSelectElement>document.getElementById('exampleInputEmail1')).value)
+  resetar_senha() {
+    this.authservice.resetar_senha((<HTMLSelectElement>document.getElementById('emailresetarsenha')).value)
       .then(() => {
         alert("Email de recuperação enviado, cheque sua caixa de entrada");
         (<HTMLSelectElement>document.getElementById("fecharmodal")).click()
@@ -62,22 +56,4 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/login'])
       })
   }
-
-  validateForm(email: string, password: string) {
-    if (email.length == 0) {
-      this.errorMessage = "Informe um email";
-      return false;
-    }
-    if (password.length == 0) {
-      this.errorMessage = "Insira a senha";
-      return false;
-    }
-    if (password.length < 4) {
-      this.errorMessage = "Senha muito curta";
-      return false;
-    }
-    this.errorMessage = '';
-    return true;
-  }
-
 }

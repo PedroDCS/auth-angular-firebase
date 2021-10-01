@@ -16,10 +16,10 @@ export class HomeComponent implements OnInit {
   constructor(private fb: FirebaseService, private authservice: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.auth = this.authservice.authState;
+    this.auth = this.authservice.estado_Auth;
     if (this.talogado()) {
       try {
-        this.getuserdados()
+        this.getDadosUsuarios()
       } catch (error) {
         alert("error")
         console.log(error);
@@ -30,9 +30,8 @@ export class HomeComponent implements OnInit {
   salvardados() {
     let data = this.usuario
     data.nomeusuario = (<HTMLSelectElement>document.getElementById("nomedeusuario")).value
-    console.log(data);
     try {
-      this.fb.firestoreupdatedata("Usuarios", this.usuario.email, data).then(() => {
+      this.fb.firestoreupdatedata("UsuariosChat", this.usuario.email, data).then(() => {
         alert("Dados Salvos com Sucesso!")
         this.router.navigate(['/chat'])
       })
@@ -42,16 +41,16 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  getuserdados() {
+  getDadosUsuarios() {
     if (this.auth.email == undefined) {
-      return this.fb.firestoregetdata("Usuarios", String(this.auth.user.email)).subscribe(doc => (this.usuario = doc.payload.data()));
+      return this.fb.firestoregetdata("UsuariosChat", String(this.auth.user.email)).subscribe(doc => (this.usuario = doc.payload.data()));
     } else {
-      return this.fb.firestoregetdata("Usuarios", this.auth.email).subscribe(doc => (this.usuario = doc.payload.data()));
+      return this.fb.firestoregetdata("UsuariosChat", this.auth.email).subscribe(doc => (this.usuario = doc.payload.data()));
     }
   }
 
   talogado() {
-    if (!this.authservice.isUserEmailLoggedIn) {
+    if (!this.authservice.usuario_logado_email) {
       this.router.navigate(['/login'])
       return false
     } else {

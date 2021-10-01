@@ -16,7 +16,8 @@ export class UserManagementActions {
   styleUrls: ['./resetpassword.component.css']
 })
 export class ResetpasswordComponent implements OnInit {
-
+  //Codigo baseado no repositorio
+  //https://c-innovative.medium.com/implementing-password-reset-can-be-a-tricky-but-inevitable-task-737badfb7bab
   ngUnsubscribe: Subject<any> = new Subject<any>();
   actions = UserManagementActions;
   mode: any;

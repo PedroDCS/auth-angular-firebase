@@ -7,10 +7,15 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ResetpasswordComponent } from './pages/resetpassword/resetpassword.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+
+  /*
   {
     path: "",
     component: HomeComponent
   },
+  */
   {
     path: "login",
     component: LoginComponent
