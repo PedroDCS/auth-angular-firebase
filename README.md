@@ -1,27 +1,49 @@
 # AuthAngularFirebase
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
+Foi criado uma aplicação Front-End e Back-End, usando Angular, Bootstrap e Firebase
+<br>
+O aplicativo possui:<br>
+-Sistema de Login<br>
+-Registro de Usuario<br>
+-Recuperação de Senha<br>
+---------------------<br>
+-Chat em tempo real (Real-Time Chat)<br>
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+Para o front-end foi utilizado o framework Angular na versão 12.2.5, também foi usada a biblioteca Bootstrap<br>
+Para o Back-end foi utilizado o Firebase para armazenamento de dados e autenticação de usuarios, utilizando o Firestore Database e o Firebase Authentication<br>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<h2>Principais Dependências Utilizadas</h2>
 
-## Build
+<h3>firebase</h3>
+Usado para o back-end da aplicação, como adição, remoção, visualização ou alteração dos dados da tabela
+<hr>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<h3>Angular Fire</h3>
+Biblioteca para integrar Angular com Firebase.
+<hr>
 
-## Running unit tests
+<br><br><hr>
+Deploy: [Link do aplicativo](https://auth-login-register-chat.web.app) <br>
+Ou: https://auth-login-register-chat.web.app
+<hr>
+<br>
+<h3>Alguns prints do projeto</h3>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<div align="center">
+  <img alt="PNG" src="https://firebasestorage.googleapis.com/v0/b/projetos-p.appspot.com/o/chat%2Fprints%2FCaptura%20de%20Tela%20(8).png?alt=media&token=1aa7b194-340d-4d6d-9f45-80ad7c38237c" />
+</div>
+<div align="center">
+  <img alt="PNG" src="https://firebasestorage.googleapis.com/v0/b/projetos-p.appspot.com/o/chat%2Fprints%2FCaptura%20de%20Tela%20(9).png?alt=media&token=e5f0b913-843d-4748-b57d-a893bdd7e344" />
+</div>
+<div align="center">
+  <img alt="PNG" src="https://firebasestorage.googleapis.com/v0/b/projetos-p.appspot.com/o/chat%2Fprints%2FCaptura%20de%20Tela%20(10).png?alt=media&token=62aa6028-ad1e-414a-809c-ab504783436a" />
+</div>
+<div align="center">
+  <img alt="PNG" src="https://firebasestorage.googleapis.com/v0/b/projetos-p.appspot.com/o/chat%2Fprints%2FCaptura%20de%20Tela%20(11).png?alt=media&token=770943f7-aca1-44cd-9082-70c2b60e0515" />
+</div>
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<div align="center">
+  <img alt="PNG" src="https://firebasestorage.googleapis.com/v0/b/projetos-p.appspot.com/o/chat%2Fprints%2FCaptura%20de%20Tela%20(12).png?alt=media&token=1692f411-0232-4742-9c1a-6865c2a3e98f" />
+</div>
